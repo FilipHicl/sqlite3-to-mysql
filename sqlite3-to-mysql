@@ -11,7 +11,11 @@ sed \
 -e '/COMMIT;/ d' \
 -e '/.*sqlite_sequence.*;/d' \
 -e "s/ varchar/ varchar($VARCHAR)/g" \
--e 's/"/`/g' \
+-e 's/"events"/`events`/g' \
+-e 's/"recorder_runs"/`recorder_runs`/g' \
+-e 's/"schema_changes"/`schema_changes`/g' \
+-e 's/"states"/`states`/g' \
+-e 's/"end"/`end`/g' \
 -e 's/CREATE TABLE \(`\w\+`\)/DROP TABLE IF EXISTS \1;\nCREATE TABLE \1/' \
 -e 's/\(CREATE TABLE.*\)\(PRIMARY KEY\) \(AUTOINCREMENT\)\(.*\)\();\)/\1AUTO_INCREMENT\4, PRIMARY KEY(id)\5/' \
 -e "s/'t'/1/g" \
